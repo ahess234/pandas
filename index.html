@@ -841,6 +841,155 @@
         scroll-behavior: auto;
       }
     }
+
+    /* as seen on (scrolling banner) */
+    .press {
+      text-align: center;
+    }
+
+    .press .eyebrow {
+      margin-bottom: 0;
+    }
+
+    .press-marquee {
+      margin-top: 26px;
+      overflow: hidden;
+      -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+      mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+    }
+
+    .press-track {
+      display: flex;
+      width: max-content;
+      animation: marquee 32s linear infinite;
+    }
+
+    .press-marquee:hover .press-track {
+      animation-play-state: paused;
+    }
+
+    .press-group {
+      display: flex;
+      align-items: center;
+      gap: 0 44px;
+      padding-right: 44px;
+    }
+
+    .press-track a {
+      color: var(--muted);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 17px;
+      white-space: nowrap;
+      display: inline-flex;
+      align-items: center;
+      transition: color 0.18s ease;
+    }
+
+    .press-track a:hover {
+      color: var(--teal);
+    }
+
+    .press-track img {
+      height: 26px;
+      width: auto;
+      opacity: 0.6;
+      filter: grayscale(1);
+      transition: opacity 0.18s ease, filter 0.18s ease;
+    }
+
+    .press-track a:hover img {
+      opacity: 1;
+      filter: none;
+    }
+
+    .press-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin: 32px auto 0;
+      text-align: left;
+    }
+
+    @media (max-width: 620px) {
+      .press-list {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .press-article {
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+      background: var(--paper);
+      border: 0.5px solid var(--line);
+      border-radius: var(--r);
+      box-shadow: var(--shadow);
+      padding: 20px 22px;
+      text-decoration: none;
+      transition: transform 0.16s ease, box-shadow 0.16s ease, border-color 0.16s ease;
+    }
+
+    .press-article:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 1px 2px rgba(28, 36, 31, 0.05), 0 22px 44px -26px rgba(28, 36, 31, 0.4);
+      border-color: var(--line-strong);
+    }
+
+    .pa-outlet {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--teal);
+    }
+
+    .pa-title {
+      color: var(--ink);
+      font-size: 16.5px;
+      line-height: 1.4;
+      font-weight: 500;
+    }
+
+    .pa-read {
+      margin-top: auto;
+      padding-top: 4px;
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--teal);
+    }
+
+    .pa-arrow {
+      margin-left: 4px;
+    }
+
+    @keyframes marquee {
+      from {
+        transform: translateX(0);
+      }
+
+      to {
+        transform: translateX(-50%);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .press-track {
+        animation: none;
+        flex-wrap: wrap;
+        justify-content: center;
+        width: auto;
+      }
+
+      .press-group:nth-child(2) {
+        display: none;
+      }
+
+      .press-marquee {
+        -webkit-mask-image: none;
+        mask-image: none;
+      }
+    }
   </style>
 </head>
 
@@ -1108,6 +1257,17 @@
       </div>
     </section>
 
+    <!-- as seen on -->
+    <section id="press" class="wrap press">
+      <div class="reveal">
+        <div class="eyebrow">the pandas in the news</div>
+        <div class="press-marquee">
+          <div class="press-track" id="pressTrack"></div>
+        </div>
+        <div class="press-list" id="pressList"></div>
+      </div>
+    </section>
+
     <!-- the story -->
     <section id="story" class="wrap">
       <div class="reveal">
@@ -1237,9 +1397,20 @@
       contractAddress: '13i7SfDDzg3t4MQnfZNtFKptHpv8HR2eaGRMfetSpump',  // pump.fun token address.
       pumpFunUrl: 'https://pump.fun/coin/13i7SfDDzg3t4MQnfZNtFKptHpv8HR2eaGRMfetSpump',  // token page on pump.fun.
       donateUrl: 'https://www.donate.gg/charity-coins',                 // donate.gg page.
-      xUrl: 'https://x.com/pingfushuangcto',                              // X account.
+      xUrl: 'https://x.com/pingshuangcto',                              // X account.
       pingImage: 'pingping.png',     // photo of Ping Ping (file sits next to this page).
       fuShuangImage: 'fushuang.png', // photo of Fu Shuang (file sits next to this page).
+
+      // news coverage for the "as seen on" strip. each item: { name, url, logo }.
+      // logo is optional (a URL or a file beside this page); leave it off to show the outlet name as text.
+      // replace the placeholders below with your real coverage. empty the list to hide the section entirely.
+      coverage: [
+        // each item: { name (outlet), title (headline), url }. title shows in the readable list below the banner.
+        { name: 'NBC News', title: 'Pandas set for 8,000-mile blind date in Atlanta', url: 'https://www.nbcnews.com/world/china/pandas-set-8000-mile-blind-date-atlanta-rcna344673' },
+        { name: 'TODAY', title: '2 giant pandas are coming to Zoo Atlanta: meet Ping Ping and Fu Shuang', url: 'https://www.today.com/news/giant-panda-china-zoo-atlanta-first-look-rcna345279' },
+        { name: 'ABC News', title: 'Get a first look at 2 new giant pandas coming to Zoo Atlanta', url: 'https://abcnews.com/GMA/Living/1st-2-new-giant-pandas-coming-zoo-atlanta/story?id=132340057' },
+        { name: 'FOX 5 Atlanta', title: 'Zoo Atlanta to receive two new giant pandas, Ping Ping and Fu Shuang', url: 'https://www.fox5atlanta.com/news/zoo-atlanta-receive-two-new-giant-pandas-ping-ping-fu-shuang' },
+      ],
     };
 
     /* ------------------------------------------------------------
@@ -1304,6 +1475,68 @@
       }
       setPandaPhoto('pingImg', SITE_CONFIG.pingImage);
       setPandaPhoto('fuImg', SITE_CONFIG.fuShuangImage);
+
+      // as seen on: build a seamless scrolling banner, hide the section if there's nothing
+      const coverage = SITE_CONFIG.coverage || [];
+      const pressSection = $('press');
+      const pressTrack = $('pressTrack');
+      if (!coverage.length) {
+        if (pressSection) pressSection.style.display = 'none';
+      } else {
+        const makeItem = (it) => {
+          const a = document.createElement('a');
+          a.href = it.url || '#';
+          a.target = '_blank';
+          a.rel = 'noopener';
+          if (it.logo) {
+            const img = document.createElement('img');
+            img.src = it.logo;
+            img.alt = it.name || 'coverage';
+            a.appendChild(img);
+          } else {
+            a.textContent = it.name || '';
+          }
+          return a;
+        };
+        // repeat the outlets until the strip is wide enough, then duplicate the set for a seamless loop
+        const filled = [];
+        while (filled.length < Math.max(coverage.length, 6)) filled.push(...coverage);
+        const makeGroup = () => {
+          const g = document.createElement('div');
+          g.className = 'press-group';
+          filled.forEach((it) => g.appendChild(makeItem(it)));
+          return g;
+        };
+        pressTrack.appendChild(makeGroup());
+        pressTrack.appendChild(makeGroup());
+
+        // readable list of articles below the banner
+        const pressList = $('pressList');
+        coverage.forEach((it) => {
+          const a = document.createElement('a');
+          a.className = 'press-article';
+          a.href = it.url || '#';
+          a.target = '_blank';
+          a.rel = 'noopener';
+          const outlet = document.createElement('span');
+          outlet.className = 'pa-outlet';
+          outlet.textContent = it.name || '';
+          const title = document.createElement('span');
+          title.className = 'pa-title';
+          title.textContent = it.title || it.name || '';
+          const read = document.createElement('span');
+          read.className = 'pa-read';
+          read.textContent = 'read article';
+          const arrow = document.createElement('span');
+          arrow.className = 'pa-arrow';
+          arrow.textContent = '↗';
+          read.appendChild(arrow);
+          a.appendChild(outlet);
+          a.appendChild(title);
+          a.appendChild(read);
+          pressList.appendChild(a);
+        });
+      }
       $('pumpLink').href = SITE_CONFIG.pumpFunUrl;
       $('donateLink').href = SITE_CONFIG.donateUrl;
       $('footDonate').href = SITE_CONFIG.donateUrl;
