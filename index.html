@@ -1388,8 +1388,8 @@
        ============================================================ */
     const SITE_CONFIG = {
       // --- update regularly ---
-      donatedTotal: 10000,      // total dev fees routed, in the currency below. update at milestones.
-      currentStageIndex: 0,     // which journey stage is active right now (0 to 7).
+      donatedTotal: 20000,      // total dev fees routed, in the currency below. update at milestones.
+      currentStageIndex: 2,     // which journey stage is active right now (0 to 7).
 
       // --- set once at launch ---
       currencySymbol: '$',      // shown before the donation figure.
@@ -1415,25 +1415,31 @@
 
     /* ------------------------------------------------------------
        STAGES
-       Eight steps of the journey. Edit a description here when news
-       breaks. Keep sentence case and British spelling.
+       Eight steps of the journey, following how China-to-US panda
+       transfers have actually run (San Diego and Washington DC, 2024):
+       preparation, a move to the departure base, a roughly 30-day
+       pre-export quarantine in China, the send-off and flight, then
+       a second quarantine in Atlanta before the public debut. Exact
+       flight dates are usually kept quiet until the pandas land.
+       Edit a description here when news breaks. Keep sentence case
+       and British spelling.
        ------------------------------------------------------------ */
     const STAGES = [
       {
         title: 'pre-departure prep in Chengdu',
-        desc: 'Ping Ping and Fu Shuang are at the Chengdu Research Base, where keepers gather health records, dietary notes and behavioural observations to prepare them for travel.'
+        desc: 'Ping Ping and Fu Shuang are at the Chengdu Research Base, where keepers gather health records, dietary notes and behavioural observations, and begin crate training to prepare them for travel.'
       },
       {
         title: 'transfer to southern panda base',
-        desc: 'the pair move to a southern base for the next phase of preparation, settling into fresh routines closer to their departure point.'
+        desc: 'the pair move to a panda base farther south for the final phase of preparation, settling into fresh routines closer to their departure point.'
       },
       {
-        title: 'flight date announced',
-        desc: 'Zoo Atlanta and Chengdu confirm the travel date, and the conservation teams on both sides lock in the logistics for the journey.'
+        title: 'pre-departure quarantine in China',
+        desc: 'around 30 days of quarantine before the flight, a standard step for pandas leaving China. vets run final health checks while keepers keep up the crate training and travel-diet routine.'
       },
       {
         title: 'departure ceremony in China',
-        desc: 'a send-off ceremony marks the start of the journey and celebrates a renewed ten-year conservation partnership.'
+        desc: 'a send-off ceremony marks the start of the journey and celebrates a renewed ten-year conservation partnership. the exact flight date is usually kept quiet until the last moment.'
       },
       {
         title: 'flight to Atlanta',
@@ -1444,8 +1450,8 @@
         desc: 'touchdown in Atlanta, followed by a careful transfer to Zoo Atlanta so the pandas can begin to settle in.'
       },
       {
-        title: 'quarantine period',
-        desc: 'around 30 days of quarantine lets the pandas adjust, while vets monitor their health and keepers build trust ahead of any public viewing.'
+        title: 'quarantine at Zoo Atlanta',
+        desc: 'at least 30 days of quarantine on arrival lets the pandas adjust, while vets monitor their health and keepers build trust ahead of any public viewing.'
       },
       {
         title: 'public debut at Zoo Atlanta',
